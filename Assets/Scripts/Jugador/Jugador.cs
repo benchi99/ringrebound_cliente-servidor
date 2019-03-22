@@ -30,7 +30,11 @@ public class Jugador : NetworkBehaviour
     [SerializeField] private float velocidad = 5;
     // Este es control del jugador.
     private CharacterController controlJugador;
-    
+
+    // TODO comentar decentemente esto
+    public GameObject proyectil = null;
+    public Transform proyectilSpawn;
+
     /// <summary>
     /// Se ejecuta antes de que el GameObject del jugador
     /// sea creado.
@@ -41,6 +45,7 @@ public class Jugador : NetworkBehaviour
         controlJugador = GetComponent<CharacterController>();
     }
 
+    // Se ejecuta en el primer frame del juego.
     void Start()
     {
         if (isLocalPlayer)
@@ -62,6 +67,11 @@ public class Jugador : NetworkBehaviour
         }
         RotacionCamara();
         MovimientoJugador();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CmdDisparo();
+        }
     }
 
     /// <summary>
@@ -77,6 +87,7 @@ public class Jugador : NetworkBehaviour
     /// Usando los ejes de entrada del ratón, controla la cámara desde
     /// una perspectiva en primera persona.
     /// </summary>
+    // TODO Arreglar bug camara mira abajo se rompe jugador.
     void RotacionCamara()
     {
         //Se obtienen los ejes de entrada del ratón, multiplicados por la sensibilidad de ratón.
@@ -145,4 +156,21 @@ public class Jugador : NetworkBehaviour
         controlJugador.SimpleMove(movimientoHaciaDelante + movimientoADerecha);
     }
 
+    // Mecánica básica de disparo.
+    // No funciona muy bien de por sí.
+    // TODO cambiar esto por mecánica de disparo propia y mejoras!!
+    [Command] // <-- Esto significa que aunque el cliente está llamando a este método, se ejecutará en el Servidor.
+    void CmdDisparo()
+    {
+        var proyectilActual = (GameObject)Instantiate(
+            proyectil,
+            proyectilSpawn.position,
+            proyectilSpawn.rotation
+            );
+
+        NetworkServer.Spawn(proyectilActual);
+
+        proyectilActual.GetComponent<Rigidbody>().velocity = proyectilActual.transform.forward * 6;
+    }
+    
 }
