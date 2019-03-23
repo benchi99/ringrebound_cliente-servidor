@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+public class Demo : MonoBehaviour
+{
+
+}
+
 public class Jugador : NetworkBehaviour
 {
     
@@ -31,7 +36,9 @@ public class Jugador : NetworkBehaviour
     // Este es control del jugador.
     private CharacterController controlJugador;
 
-    // TODO comentar decentemente esto
+    /**
+     * VARIABLES PROYECTILES.
+     */
     public GameObject proyectil = null;
     public Transform proyectilSpawn;
 
@@ -61,6 +68,7 @@ public class Jugador : NetworkBehaviour
     // Se ejecuta en cada fotograma del juego.
     void Update()
     {
+        
         if (!isLocalPlayer)
         { 
             return;
@@ -87,7 +95,6 @@ public class Jugador : NetworkBehaviour
     /// Usando los ejes de entrada del ratón, controla la cámara desde
     /// una perspectiva en primera persona.
     /// </summary>
-    // TODO Arreglar bug camara mira abajo se rompe jugador.
     void RotacionCamara()
     {
         //Se obtienen los ejes de entrada del ratón, multiplicados por la sensibilidad de ratón.
@@ -138,7 +145,7 @@ public class Jugador : NetworkBehaviour
     {
         Vector3 rotacionEuler = transform.eulerAngles;
         rotacionEuler.x = valor;
-        transform.eulerAngles = rotacionEuler;
+        camara.transform.eulerAngles = rotacionEuler;
     }
 
     /// <summary>
