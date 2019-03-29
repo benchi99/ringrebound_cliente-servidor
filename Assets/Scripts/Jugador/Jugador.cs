@@ -38,9 +38,10 @@ public class Jugador : NetworkBehaviour
 
     /**
      * VARIABLES PROYECTILES.
-     */
+     
     public GameObject proyectil = null;
     public Transform proyectilSpawn;
+    */
 
     /// <summary>
     /// Se ejecuta antes de que el GameObject del jugador
@@ -64,7 +65,6 @@ public class Jugador : NetworkBehaviour
         }
     }
 
-
     // Se ejecuta en cada fotograma del juego.
     void Update()
     {
@@ -75,11 +75,12 @@ public class Jugador : NetworkBehaviour
         }
         RotacionCamara();
         MovimientoJugador();
-
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CmdDisparo();
         }
+        */
     }
 
     /// <summary>
@@ -163,21 +164,27 @@ public class Jugador : NetworkBehaviour
         controlJugador.SimpleMove(movimientoHaciaDelante + movimientoADerecha);
     }
 
+
+
     // Mecánica básica de disparo.
     // No funciona muy bien de por sí.
     // TODO cambiar esto por mecánica de disparo propia y mejoras!!
-    [Command] // <-- Esto significa que aunque el cliente está llamando a este método, se ejecutará en el Servidor.
+    /*[Command] // <-- Esto significa que aunque el cliente está llamando a este método, se ejecutará en el Servidor.
+    
     void CmdDisparo()
     {
-        var proyectilActual = (GameObject)Instantiate(
-            proyectil,
-            proyectilSpawn.position,
-            proyectilSpawn.rotation
-            );
+        var aro = gameObject.AddComponent<BaseAro>();
+        var proyectilActual = aro.Disparar(proyectilSpawn.position, proyectilSpawn.rotation);
+        
+        /*
+        var proyectilActual = Instantiate(proyectil,
+                                            proyectilSpawn.position,
+                                            proyectilSpawn.rotation);
+        
 
         NetworkServer.Spawn(proyectilActual);
 
-        proyectilActual.GetComponent<Rigidbody>().velocity = proyectilActual.transform.forward * 6;
+        proyectilActual.GetComponent<Rigidbody>().velocity = proyectilActual.transform.forward * 12;
     }
-    
+    */
 }

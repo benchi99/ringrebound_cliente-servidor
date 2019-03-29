@@ -60,7 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Jugador\CameraPerPlayer.cs" />
+    <Compile Include="Assets\Scripts\Aros\Accionador.cs" />
+    <Compile Include="Assets\Scripts\Aros\BaseAro.cs" />
     <Compile Include="Assets\Scripts\Jugador\Jugador.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/INSTITUTO/2DAM/PROYECTO FIN CICLO/Proyecto/Ricochet 2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
