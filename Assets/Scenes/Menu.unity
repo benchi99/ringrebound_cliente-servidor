@@ -2419,7 +2419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPausa: {fileID: 793553362}
-  menu: {fileID: 956094035}
+  menu: {fileID: 0}
 --- !u!4 &956094036
 Transform:
   m_ObjectHideFlags: 0

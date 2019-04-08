@@ -6,32 +6,29 @@ using UnityEngine.SceneManagement;
 public class MenuPausa : MonoBehaviour
 {
     [SerializeField] private Canvas menuPausa;
-    [SerializeField] private MenuPausa menu;
+
+    private static MenuPausa _menu;
+    public static MenuPausa Menu
+    {
+        get { return _menu; }
+    }
 
     void Awake()
     {
         // Me aseguro de que solo hay un menú de pausa por instancia de juego.
-        if (menu == null)
+        if (_menu == null)
         {
-            menu = this;
+            _menu = this;
             DontDestroyOnLoad(gameObject);
             DontDestroyOnLoad(menuPausa.gameObject);
         }
-        else if (menu != this)
+        else
         {
             Destroy(menuPausa.gameObject);
             Destroy(gameObject);
         }    
     }
-
-    void Start()
-    {
-        if (SceneManager.GetActiveScene().name == "Menu")
-        {
-            menuPausa.gameObject.SetActive(false);
-        }
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -41,5 +38,12 @@ public class MenuPausa : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             menuPausa.gameObject.SetActive(!menuPausa.gameObject.activeSelf);
         }
+
+        //Se asegura de que en el menú principal el menú de pausa no pueda aparecer.
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            menuPausa.gameObject.SetActive(false);
+        }
+
     }
 }
