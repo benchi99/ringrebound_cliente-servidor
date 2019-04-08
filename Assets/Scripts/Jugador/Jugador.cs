@@ -164,27 +164,8 @@ public class Jugador : NetworkBehaviour
         controlJugador.SimpleMove(movimientoHaciaDelante + movimientoADerecha);
     }
 
-
-
-    // Mecánica básica de disparo.
-    // No funciona muy bien de por sí.
-    // TODO cambiar esto por mecánica de disparo propia y mejoras!!
-    /*[Command] // <-- Esto significa que aunque el cliente está llamando a este método, se ejecutará en el Servidor.
-    
-    void CmdDisparo()
+    private void OnDestroy()
     {
-        var aro = gameObject.AddComponent<BaseAro>();
-        var proyectilActual = aro.Disparar(proyectilSpawn.position, proyectilSpawn.rotation);
-        
-        /*
-        var proyectilActual = Instantiate(proyectil,
-                                            proyectilSpawn.position,
-                                            proyectilSpawn.rotation);
-        
-
-        NetworkServer.Spawn(proyectilActual);
-
-        proyectilActual.GetComponent<Rigidbody>().velocity = proyectilActual.transform.forward * 12;
+        Cursor.lockState = CursorLockMode.None;
     }
-    */
 }
