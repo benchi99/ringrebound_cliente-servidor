@@ -1,2 +1,0 @@
-I:\INSTITUTO\2DAM\PROYECTO FIN CICLO\Proyecto\Ricochet 2\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
-I:\INSTITUTO\2DAM\PROYECTO FIN CICLO\Proyecto\Ricochet 2\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
