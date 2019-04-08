@@ -59,7 +59,7 @@ public class Accionador : NetworkBehaviour
         }
 
         stockUI.text = "Rings: " + stock;
-        print(tiempoVolverDisparar);
+        //print(tiempoVolverDisparar);
     }
 
     bool PuedeDisparar()
