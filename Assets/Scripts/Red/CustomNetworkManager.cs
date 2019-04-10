@@ -13,6 +13,8 @@ public class CustomNetworkManager : NetworkManager
             serverName = "Ring Rebound Server";
         
         base.StartHost();
+
+        print("Partida " + serverName + " iniciada.");
     }
 
     public void ConectarAPartida()
