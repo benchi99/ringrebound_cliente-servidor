@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -73,14 +74,12 @@ public class Jugador : NetworkBehaviour
         { 
             return;
         }
-        RotacionCamara();
-        MovimientoJugador();
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (!GlobalVars.IsInPauseMenu)
         {
-            CmdDisparo();
+            RotacionCamara();
+            MovimientoJugador();
         }
-        */
     }
 
     /// <summary>

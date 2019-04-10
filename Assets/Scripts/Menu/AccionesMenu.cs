@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Assets.Scripts;
 
 public class AccionesMenu : MonoBehaviour
 {
@@ -29,16 +30,19 @@ public class AccionesMenu : MonoBehaviour
             menu.gameObject.SetActive(false);
             playButton.gameObject.SetActive(false);
             disconnectButton.gameObject.SetActive(true);
+            GlobalVars.IsInPauseMenu = false;
         }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "Main")
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) && SceneManager.GetActiveScene().name == "Main")
         {
+            GlobalVars.IsInPauseMenu = !GlobalVars.IsInPauseMenu;
+
             menu.gameObject.SetActive(!menu.gameObject.activeSelf);
 
-            if (menu.gameObject.activeSelf)
+            if (GlobalVars.IsInPauseMenu)
             {
                 Cursor.lockState = CursorLockMode.None;
             }
