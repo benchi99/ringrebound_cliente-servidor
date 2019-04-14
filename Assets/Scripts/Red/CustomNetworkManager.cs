@@ -9,7 +9,7 @@ public class CustomNetworkManager : NetworkManager
 
     public void EmpezarHost()
     {
-        if (serverName == null)
+        if (serverName == null || serverName == "")
             serverName = "Ring Rebound Server";
         
         base.StartHost();
