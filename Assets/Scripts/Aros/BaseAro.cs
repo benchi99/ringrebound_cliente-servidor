@@ -16,16 +16,13 @@ public class BaseAro : NetworkBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-
-    private void OnTriggerEnter(Collider other)
+    
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "levelBounds")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "levelBounds")
         {
+            print("Hit!");
             NetworkServer.Destroy(this.gameObject);
-        }
-        else if (other.gameObject.tag == "Ricochet")
-        {
-            rb.velocity += new Vector3(-rb.velocity.x, 0, -rb.velocity.z);
         }
     }
     
