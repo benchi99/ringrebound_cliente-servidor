@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-//TODO MODIFICAR CLASE IGUAL CAPTURA
-
 public class BaseAro : NetworkBehaviour
 {
     [SerializeField] float velocidad;
