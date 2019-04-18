@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.Networking;
 
 public class Jugador : NetworkBehaviour
 {
-    
+    #region Variables
     /*
      * VARIABLES DE CONTROL DE CÁMARA.
      */
@@ -29,16 +30,18 @@ public class Jugador : NetworkBehaviour
     
     // Este valor controlará la velocidad de movimiento del jugador.
     [SerializeField] private float velocidad = 5;
+
+    // Valor que controla la fuerza de impacto.
+    [SerializeField] private float knockbackValue = 7;
+
     // Este es control del jugador.
     private CharacterController controlJugador;
 
-    /**
-     * VARIABLES PROYECTILES.
-     
-    public GameObject proyectil = null;
-    public Transform proyectilSpawn;
-    */
+    private FuerzaImpacto fz;
 
+    #endregion
+
+    #region Metodos Unity
     /// <summary>
     /// Se ejecuta antes de que el GameObject del jugador
     /// sea creado.
@@ -47,6 +50,7 @@ public class Jugador : NetworkBehaviour
     {
         BloquearRaton();
         controlJugador = GetComponent<CharacterController>();
+        fz = GetComponent<FuerzaImpacto>();
     }
 
     // Se ejecuta en el primer frame del juego.
@@ -77,6 +81,27 @@ public class Jugador : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// Evento que se ejecuta cuando se destruye
+    /// este GameObject.
+    /// </summary>
+    void OnDestroy()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Projectile")
+        {
+            print("Hit!");
+            NetworkServer.Destroy(other.gameObject);
+            AplicarFuerzaImpacto();
+        }
+    }    
+    #endregion
+
+    #region Metodos Propios
     /// <summary>
     /// Bloquea el ratón dentro del juego mientras que
     /// el jugador esté siendo controlado.
@@ -158,8 +183,14 @@ public class Jugador : NetworkBehaviour
         controlJugador.SimpleMove(movimientoHaciaDelante + movimientoADerecha);
     }
 
-    private void OnDestroy()
+    /// <summary>
+    /// Aplica un empuje hacia atrás al jugador.
+    /// </summary>
+    void AplicarFuerzaImpacto()
     {
-        Cursor.lockState = CursorLockMode.None;
+        fz.AddImpact(-transform.forward, knockbackValue);
+        //controlJugador.SimpleMove(fuerzaImpacto);
     }
+
+    #endregion
 }
