@@ -8,20 +8,18 @@ public class BaseAro : NetworkBehaviour
     [SerializeField] float velocidad;
     [SerializeField] int delayDisparo;
 
+    private float timerTag = 1f;
     private Rigidbody rb;
 
-    private void Awake()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
-    
-    private void OnCollisionEnter(Collision collision)
+
+    void Update()
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "levelBounds")
-        {
-            print("Hit!");
-            NetworkServer.Destroy(this.gameObject);
-        }
+        if (Time.time >= timerTag)
+            gameObject.tag = "Projectile";
     }
     
     public void Disparar()

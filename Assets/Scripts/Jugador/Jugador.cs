@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class Jugador : NetworkBehaviour
 {
-    
+    #region Variables
     /*
      * VARIABLES DE CONTROL DE CÁMARA.
      */
@@ -32,13 +32,9 @@ public class Jugador : NetworkBehaviour
     // Este es control del jugador.
     private CharacterController controlJugador;
 
-    /**
-     * VARIABLES PROYECTILES.
-     
-    public GameObject proyectil = null;
-    public Transform proyectilSpawn;
-    */
+    #endregion
 
+    #region MetodosUnity
     /// <summary>
     /// Se ejecuta antes de que el GameObject del jugador
     /// sea creado.
@@ -77,6 +73,27 @@ public class Jugador : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// Evento que se ejecuta cuando se destruye
+    /// este GameObject.
+    /// </summary>
+    void OnDestroy()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Projectile")
+        {
+            print("Hit!");
+            NetworkServer.Destroy(other.gameObject);
+        }
+    }
+
+    #endregion
+
+    #region MetodosPropios
     /// <summary>
     /// Bloquea el ratón dentro del juego mientras que
     /// el jugador esté siendo controlado.
@@ -157,9 +174,5 @@ public class Jugador : NetworkBehaviour
 
         controlJugador.SimpleMove(movimientoHaciaDelante + movimientoADerecha);
     }
-
-    private void OnDestroy()
-    {
-        Cursor.lockState = CursorLockMode.None;
-    }
+    #endregion
 }
