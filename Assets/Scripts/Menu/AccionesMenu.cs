@@ -7,17 +7,23 @@ using Assets.Scripts;
 
 public class AccionesMenu : MonoBehaviour
 {
+    #region Variables
 
     [SerializeField] private Canvas menu;
 
     [SerializeField] private Button playButton;
     [SerializeField] private Button disconnectButton;
 
+    #endregion
+
+    #region Métodos de Unity
+
     void Awake()
     {
         disconnectButton.gameObject.SetActive(false);
     }
 
+    //TODO Buscar alternativa a OnLevelWasLoaded.
     private void OnLevelWasLoaded(int level)
     {
         if (level == 0)
@@ -54,16 +60,26 @@ public class AccionesMenu : MonoBehaviour
 
     }
 
-    //Este método se llama cuando se quiere cerrar el juego.
+    #endregion
+
+    #region Otros métodos
+
+    /// <summary>
+    /// Cierra el juego.
+    /// </summary>
     public void ExitGame()
     {
         Application.Quit();
     }
-
-    //Este método simplemente activa y desactiva la ventana 
-    //a la que es pasada por parámetros
+    
+    /// <summary>
+    /// Activa o desactiva una ventana/GameObject
+    /// </summary>
+    /// <param name="panel">El panel a mostrar/ocultar.</param>
     public void ToggleWindow (GameObject panel)
     {
         panel.SetActive(!panel.activeSelf);
     }
+
+    #endregion
 }
