@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 3619813367126020222}
   - component: {fileID: 5155057186179770604}
   - component: {fileID: 4163003775497869445}
+  - component: {fileID: 2959120739910251187}
   - component: {fileID: 6901291679481635811}
   m_Layer: 0
   m_Name: Jugador
@@ -335,6 +336,7 @@ MonoBehaviour:
   cuerpo: {fileID: 3928843286765422574}
   camara: {fileID: 3928843286938443134}
   velocidad: 5
+  knockbackValue: 12
 --- !u!114 &4163003775497869445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +355,19 @@ MonoBehaviour:
     type: 3}
   puntoDisparo: {fileID: 8658730969165646555}
   stockUI: {fileID: 5954706123173491648}
+--- !u!114 &2959120739910251187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928843286765422574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e86a8613ba533c4c960e6c3190ec9ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masa: 3
 --- !u!136 &6901291679481635811
 CapsuleCollider:
   m_ObjectHideFlags: 0

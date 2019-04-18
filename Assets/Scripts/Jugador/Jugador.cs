@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,12 +30,18 @@ public class Jugador : NetworkBehaviour
     
     // Este valor controlará la velocidad de movimiento del jugador.
     [SerializeField] private float velocidad = 5;
+
+    // Valor que controla la fuerza de impacto.
+    [SerializeField] private float knockbackValue = 7;
+
     // Este es control del jugador.
     private CharacterController controlJugador;
 
+    private FuerzaImpacto fz;
+
     #endregion
 
-    #region MetodosUnity
+    #region Metodos Unity
     /// <summary>
     /// Se ejecuta antes de que el GameObject del jugador
     /// sea creado.
@@ -43,6 +50,7 @@ public class Jugador : NetworkBehaviour
     {
         BloquearRaton();
         controlJugador = GetComponent<CharacterController>();
+        fz = GetComponent<FuerzaImpacto>();
     }
 
     // Se ejecuta en el primer frame del juego.
@@ -88,12 +96,12 @@ public class Jugador : NetworkBehaviour
         {
             print("Hit!");
             NetworkServer.Destroy(other.gameObject);
+            AplicarFuerzaImpacto();
         }
-    }
-
+    }    
     #endregion
 
-    #region MetodosPropios
+    #region Metodos Propios
     /// <summary>
     /// Bloquea el ratón dentro del juego mientras que
     /// el jugador esté siendo controlado.
@@ -174,5 +182,15 @@ public class Jugador : NetworkBehaviour
 
         controlJugador.SimpleMove(movimientoHaciaDelante + movimientoADerecha);
     }
+
+    /// <summary>
+    /// Aplica un empuje hacia atrás al jugador.
+    /// </summary>
+    void AplicarFuerzaImpacto()
+    {
+        fz.AddImpact(-transform.forward, knockbackValue);
+        //controlJugador.SimpleMove(fuerzaImpacto);
+    }
+
     #endregion
 }
