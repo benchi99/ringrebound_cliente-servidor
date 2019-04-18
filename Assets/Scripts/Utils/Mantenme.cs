@@ -2,13 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Esta clase se encarga de mantener entre escenas
+/// los GameObjects que tengan este Script.
+/// </summary>
 public class Mantenme : MonoBehaviour
 {
+    #region Variables
+
     private static Mantenme _menu;
     public static Mantenme Menu
     {
         get { return _menu; }
     }
+
+    #endregion
+
+    #region Métodos Unity
 
     void Awake()
     {
@@ -23,4 +33,6 @@ public class Mantenme : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    #endregion
 }

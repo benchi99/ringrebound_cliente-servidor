@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// Esta clase contendrá variables comunes a todos
+    /// los scripts.
+    /// </summary>
     public class GlobalVars
     {
-
+        //Controla si el jugador ha activado el menú de pausa.
         public static bool IsInPauseMenu = false;
 
     }
