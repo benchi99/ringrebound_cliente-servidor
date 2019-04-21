@@ -8,8 +8,8 @@ public class Launcher : NetworkBehaviour
 {
     #region Variables
 
-    [SerializeField] private float fuerza = 5;
-    [SerializeField] private float dirEjeY = 10;
+    [SerializeField] private float fuerza = 65f;
+    [SerializeField] private float dirEjeY = 0.3f;
 
     #endregion
 
@@ -24,7 +24,6 @@ public class Launcher : NetworkBehaviour
     #endregion
 
     #region Otros métodos
-
 
     void Lanzar(GameObject gameObject)
     {

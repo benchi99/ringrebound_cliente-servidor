@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e86a8613ba533c4c960e6c3190ec9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masa: 3
+  masa: 1
 --- !u!136 &6901291679481635811
 CapsuleCollider:
   m_ObjectHideFlags: 0
