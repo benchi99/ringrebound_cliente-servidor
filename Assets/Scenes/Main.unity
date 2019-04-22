@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuerza: 65
-  dirEjeY: 0.3
+  dirEjeY: 2
 --- !u!54 &1018715864
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1155,8 +1155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37342db3f683e5249ad0943d5f198b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuerza: 65
-  dirEjeY: 0.3
+  fuerza: 35
+  dirEjeY: 13
 --- !u!65 &1967922017
 BoxCollider:
   m_ObjectHideFlags: 0
