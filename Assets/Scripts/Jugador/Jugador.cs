@@ -191,6 +191,12 @@ public class Jugador : NetworkBehaviour
         fz.AddImpact(-transform.forward, knockbackValue);
     }
 
+    /// <summary>
+    /// Utilizando el script FuerzaImpacto, aplico un
+    /// "impacto" que hace el efecto de lanzar al jugador por el aire.
+    /// </summary>
+    /// <param name="direccion"></param>
+    /// <param name="fuerza"></param>
     public void Lanzar(Vector3 direccion, float fuerza)
     {
         fz.AddImpact(direccion, fuerza);
