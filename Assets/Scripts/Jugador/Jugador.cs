@@ -189,7 +189,11 @@ public class Jugador : NetworkBehaviour
     void AplicarFuerzaImpacto()
     {
         fz.AddImpact(-transform.forward, knockbackValue);
-        //controlJugador.SimpleMove(fuerzaImpacto);
+    }
+
+    public void Lanzar(Vector3 direccion, float fuerza)
+    {
+        fz.AddImpact(direccion, fuerza);
     }
 
     #endregion
