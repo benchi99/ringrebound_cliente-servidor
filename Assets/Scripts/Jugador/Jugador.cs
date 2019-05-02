@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Random = UnityEngine.Random;
 
 public class Jugador : NetworkBehaviour
 {
@@ -39,6 +40,8 @@ public class Jugador : NetworkBehaviour
 
     private FuerzaImpacto fz;
 
+    private NetworkStartPosition[] puntosReaparicion;
+
     #endregion
 
     #region Metodos Unity
@@ -59,6 +62,7 @@ public class Jugador : NetworkBehaviour
         if (isLocalPlayer)
         {
             camara.gameObject.SetActive(true);
+            puntosReaparicion = FindObjectsOfType<NetworkStartPosition>();
         } else
         {
             camara.gameObject.SetActive(false);
@@ -200,6 +204,19 @@ public class Jugador : NetworkBehaviour
     public void Lanzar(Vector3 direccion, float fuerza)
     {
         fz.AddImpact(direccion, fuerza);
+    }
+
+    [ClientRpc]
+    public void RpcReaparecer()
+    {
+        Vector3 puntoReaparicion = Vector3.zero;
+
+        if (puntosReaparicion != null && puntosReaparicion.Length > 0)
+        {
+            puntoReaparicion = puntosReaparicion[Random.Range(0, puntosReaparicion.Length)].transform.position;
+        }
+
+        transform.position = puntoReaparicion;
     }
 
     #endregion
