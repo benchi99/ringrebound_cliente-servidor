@@ -78,6 +78,11 @@ public class Jugador : NetworkBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RpcReaparecer();
+        }
+
         if (!GlobalVars.IsInPauseMenu)
         {
             RotacionCamara();
@@ -217,7 +222,7 @@ public class Jugador : NetworkBehaviour
         }
 
         transform.position = puntoReaparicion;
+        print("Respawn!");
     }
-
     #endregion
 }

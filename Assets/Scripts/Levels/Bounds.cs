@@ -7,6 +7,11 @@ public class Bounds : NetworkBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
+        TriggerActions(other);
+    }
+
+    void TriggerActions(Collider other)
+    {
         switch (other.gameObject.tag)
         {
             case "Projectile":
@@ -17,6 +22,6 @@ public class Bounds : NetworkBehaviour
 
                 jug.RpcReaparecer();
                 break;
-        }    
+        }
     }
 }
