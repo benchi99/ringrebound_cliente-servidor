@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ricochet
   - Projectile
+  - LvlBound
   layers:
   - Default
   - TransparentFX
