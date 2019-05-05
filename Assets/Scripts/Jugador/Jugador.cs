@@ -23,7 +23,7 @@ public class Jugador : NetworkBehaviour
     public GameObject cuerpo;
 
     //Cámara posicionada en primera persona.
-    [SerializeField] Camera camara;
+    [SerializeField] private Camera camara;
 
     /**
      * VARIABLES DE CONTROL DE JUGADOR.
@@ -38,8 +38,11 @@ public class Jugador : NetworkBehaviour
     // Este es control del jugador.
     private CharacterController controlJugador;
 
+    // Script FuerzaImpacto, que contiene funciones para
+    // aplicar fuerzas de impacto al CharacterController.
     private FuerzaImpacto fz;
 
+    // Array de puntos de Reaparición.
     private NetworkStartPosition[] puntosReaparicion;
 
     #endregion
@@ -211,6 +214,9 @@ public class Jugador : NetworkBehaviour
         fz.AddImpact(direccion, fuerza);
     }
 
+    /// <summary>
+    /// Hace reaparecer al jugador una vez llamada la función.
+    /// </summary>
     [ClientRpc]
     public void RpcReaparecer()
     {
