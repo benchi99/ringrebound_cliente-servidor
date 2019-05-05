@@ -23,21 +23,14 @@ public class AccionesMenu : MonoBehaviour
         disconnectButton.gameObject.SetActive(false);
     }
 
-    //TODO Buscar alternativa a OnLevelWasLoaded.
-    private void OnLevelWasLoaded(int level)
+    void OnEnable()
     {
-        if (level == 0)
-        {
-            playButton.gameObject.SetActive(true);
-            disconnectButton.gameObject.SetActive(false);
-        }
-        else if (level == 1)
-        {
-            menu.gameObject.SetActive(false);
-            playButton.gameObject.SetActive(false);
-            disconnectButton.gameObject.SetActive(true);
-            GlobalVars.IsInPauseMenu = false;
-        }
+        SceneManager.sceneLoaded += LevelLoadEvents;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LevelLoadEvents;
     }
 
     void Update()
@@ -79,6 +72,27 @@ public class AccionesMenu : MonoBehaviour
     public void ToggleWindow (GameObject panel)
     {
         panel.SetActive(!panel.activeSelf);
+    }
+
+    /// <summary>
+    /// Listener de sceneLoaded.
+    /// </summary>
+    /// <param name="scene">Escena.</param>
+    /// <param name="mode">Modo de carga de la Escena.</param>
+    void LevelLoadEvents(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Menu")
+        {
+            playButton.gameObject.SetActive(true);
+            disconnectButton.gameObject.SetActive(false);
+        }
+        else if (scene.name == "Main")
+        {
+            menu.gameObject.SetActive(false);
+            playButton.gameObject.SetActive(false);
+            disconnectButton.gameObject.SetActive(true);
+            GlobalVars.IsInPauseMenu = false;
+        }
     }
 
     #endregion
