@@ -57,6 +57,7 @@ public class Jugador : NetworkBehaviour
         BloquearRaton();
         controlJugador = GetComponent<CharacterController>();
         fz = GetComponent<FuerzaImpacto>();
+        puntosReaparicion = FindObjectsOfType<NetworkStartPosition>();
     }
 
     // Se ejecuta en el primer frame del juego.
@@ -65,8 +66,9 @@ public class Jugador : NetworkBehaviour
         if (isLocalPlayer)
         {
             camara.gameObject.SetActive(true);
-            puntosReaparicion = FindObjectsOfType<NetworkStartPosition>();
-        } else
+            
+        } 
+        else
         {
             camara.gameObject.SetActive(false);
         }
