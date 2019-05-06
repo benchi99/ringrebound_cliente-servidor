@@ -567,6 +567,7 @@ GameObject:
   - component: {fileID: 3928843287059922758}
   - component: {fileID: 3928843287059922759}
   - component: {fileID: 3928843287059922808}
+  - component: {fileID: 16593879151127993}
   m_Layer: 0
   m_Name: Cuerpo
   m_TagString: Untagged
@@ -650,3 +651,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &16593879151127993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928843287059922810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2175da94295c2d24f975d623609027df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material1: {fileID: 2100000, guid: bd1e53a914be88f4281fd623dc2acf1f, type: 2}
+  material2: {fileID: 2100000, guid: 4138032086ec12240b08374d928b4970, type: 2}
+  material3: {fileID: 2100000, guid: 25372e8a688f3ad4cb6800658beb13e6, type: 2}
+  material4: {fileID: 2100000, guid: fe2cb84f0bd6e1a4b91750816e881243, type: 2}
+  material5: {fileID: 2100000, guid: b734e0e976faeff4288a4efe7e2ecf7f, type: 2}
