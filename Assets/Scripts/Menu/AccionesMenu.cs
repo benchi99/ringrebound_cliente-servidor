@@ -13,6 +13,10 @@ public class AccionesMenu : MonoBehaviour
 
     [SerializeField] private Button playButton;
     [SerializeField] private Button disconnectButton;
+    [SerializeField] private Dropdown resolution;
+    [SerializeField] private Dropdown fsms;
+
+    private FullScreenMode isFullscreen = FullScreenMode.ExclusiveFullScreen;
 
     #endregion
 
@@ -21,6 +25,8 @@ public class AccionesMenu : MonoBehaviour
     void Awake()
     {
         disconnectButton.gameObject.SetActive(false);
+        RellenaDropdownResoluciones();
+        RellenarDropdownModosFullscreen();
     }
 
     void OnEnable()
@@ -93,6 +99,36 @@ public class AccionesMenu : MonoBehaviour
             disconnectButton.gameObject.SetActive(true);
             GlobalVars.IsInPauseMenu = false;
         }
+    }
+
+    void ResolutionChange(Resolution resolution)
+    {
+    }
+
+    void RellenaDropdownResoluciones()
+    {
+        List<string> resolutions = new List<string>();
+
+        foreach (Resolution res in Screen.resolutions)
+        {
+            resolutions.Add(res.ToString());
+        }
+
+        resolution.ClearOptions();
+        resolution.AddOptions(resolutions);
+    }
+
+    void RellenarDropdownModosFullscreen()
+    {
+        List<string> fullscreenmodes = new List<string>();
+        foreach (FullScreenMode fsm in GlobalVars.fullScreenModes)
+        {
+            fullscreenmodes.Add(fsm.ToString());
+        }
+
+        fsms.ClearOptions();
+        fsms.AddOptions(fullscreenmodes);
+
     }
 
     #endregion
