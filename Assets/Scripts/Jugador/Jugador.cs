@@ -14,7 +14,7 @@ public class Jugador : NetworkBehaviour
      */
 
     // Este valor controlará la sensibilidad del ratón.
-    public float sensibilidadRaton;
+    public float sensibilidadRaton = GlobalVars.sensibilidadRaton;
 
     //Este valor evitará que la cámara pueda girar 360º.
     private float restriccionEjeX;

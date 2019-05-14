@@ -22,5 +22,7 @@ namespace Assets.Scripts
             FullScreenMode.MaximizedWindow,
             FullScreenMode.Windowed
         };
+
+        public static float sensibilidadRaton = 150;
     }
 }
