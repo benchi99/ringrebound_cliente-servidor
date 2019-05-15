@@ -1,22 +1,20 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-
-public class Demo : MonoBehaviour
-{
-
-}
+using Random = UnityEngine.Random;
 
 public class Jugador : NetworkBehaviour
 {
-    
+    #region Variables
     /*
      * VARIABLES DE CONTROL DE CÁMARA.
      */
 
     // Este valor controlará la sensibilidad del ratón.
-    public float sensibilidadRaton;
+    public float sensibilidadRaton = GlobalVars.sensibilidadRaton;
 
     //Este valor evitará que la cámara pueda girar 360º.
     private float restriccionEjeX;
@@ -25,7 +23,7 @@ public class Jugador : NetworkBehaviour
     public GameObject cuerpo;
 
     //Cámara posicionada en primera persona.
-    [SerializeField] Camera camara;
+    [SerializeField] private Camera camara;
 
     /**
      * VARIABLES DE CONTROL DE JUGADOR.
@@ -33,16 +31,23 @@ public class Jugador : NetworkBehaviour
     
     // Este valor controlará la velocidad de movimiento del jugador.
     [SerializeField] private float velocidad = 5;
+
+    // Valor que controla la fuerza de impacto.
+    [SerializeField] private float knockbackValue = 7;
+
     // Este es control del jugador.
     private CharacterController controlJugador;
 
-    /**
-     * VARIABLES PROYECTILES.
-     
-    public GameObject proyectil = null;
-    public Transform proyectilSpawn;
-    */
+    // Script FuerzaImpacto, que contiene funciones para
+    // aplicar fuerzas de impacto al CharacterController.
+    private FuerzaImpacto fz;
 
+    // Array de puntos de Reaparición.
+    private NetworkStartPosition[] puntosReaparicion;
+
+    #endregion
+
+    #region Metodos Unity
     /// <summary>
     /// Se ejecuta antes de que el GameObject del jugador
     /// sea creado.
@@ -51,6 +56,8 @@ public class Jugador : NetworkBehaviour
     {
         BloquearRaton();
         controlJugador = GetComponent<CharacterController>();
+        fz = GetComponent<FuerzaImpacto>();
+        puntosReaparicion = FindObjectsOfType<NetworkStartPosition>();
     }
 
     // Se ejecuta en el primer frame del juego.
@@ -59,7 +66,9 @@ public class Jugador : NetworkBehaviour
         if (isLocalPlayer)
         {
             camara.gameObject.SetActive(true);
-        } else
+            
+        } 
+        else
         {
             camara.gameObject.SetActive(false);
         }
@@ -73,16 +82,40 @@ public class Jugador : NetworkBehaviour
         { 
             return;
         }
-        RotacionCamara();
-        MovimientoJugador();
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            CmdDisparo();
+            RpcReaparecer();
         }
-        */
+
+        if (!GlobalVars.IsInPauseMenu)
+        {
+            RotacionCamara();
+            MovimientoJugador();
+        }
     }
 
+    /// <summary>
+    /// Evento que se ejecuta cuando se destruye
+    /// este GameObject.
+    /// </summary>
+    void OnDestroy()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Projectile")
+        {
+            print("Hit!");
+            NetworkServer.Destroy(other.gameObject);
+            AplicarFuerzaImpacto();
+        }
+    }    
+    #endregion
+
+    #region Metodos Propios
     /// <summary>
     /// Bloquea el ratón dentro del juego mientras que
     /// el jugador esté siendo controlado.
@@ -164,8 +197,39 @@ public class Jugador : NetworkBehaviour
         controlJugador.SimpleMove(movimientoHaciaDelante + movimientoADerecha);
     }
 
-    private void OnDestroy()
+    /// <summary>
+    /// Aplica un empuje hacia atrás al jugador.
+    /// </summary>
+    void AplicarFuerzaImpacto()
     {
-        Cursor.lockState = CursorLockMode.None;
+        fz.AddImpact(-transform.forward, knockbackValue);
     }
+
+    /// <summary>
+    /// Utilizando el script FuerzaImpacto, aplico un
+    /// "impacto" que hace el efecto de lanzar al jugador por el aire.
+    /// </summary>
+    /// <param name="direccion"></param>
+    /// <param name="fuerza"></param>
+    public void Lanzar(Vector3 direccion, float fuerza)
+    {
+        fz.AddImpact(direccion, fuerza);
+    }
+
+    /// <summary>
+    /// Hace reaparecer al jugador una vez llamada la función.
+    /// </summary>
+    [ClientRpc]
+    public void RpcReaparecer()
+    {
+        Vector3 puntoReaparicion = Vector3.zero;
+
+        if (puntosReaparicion != null && puntosReaparicion.Length > 0)
+        {
+            puntoReaparicion = puntosReaparicion[Random.Range(0, puntosReaparicion.Length)].transform.position;
+        }
+
+        transform.position = puntoReaparicion;
+    }
+    #endregion
 }

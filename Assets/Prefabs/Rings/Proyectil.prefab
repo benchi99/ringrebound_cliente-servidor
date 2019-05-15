@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4700041242949173294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.55, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.027530449, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 0.14450058, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 254afd3e13cd89b45b3f0c8a1f65fa15, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,12 +89,12 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4700041242949173294}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_Material: {fileID: 13400000, guid: c8ef0aa21d55ed74bb8fa60b23d0ae43, type: 2}
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.50835204
+  m_Center: {x: 0, y: 0.15168734, z: 0}
 --- !u!54 &6641083549505948181
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -178,5 +178,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6aacb4b31d97d43bb247f32c056afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 12
+  velocidad: 36
   delayDisparo: 0

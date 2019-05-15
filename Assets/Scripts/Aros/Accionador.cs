@@ -4,10 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-//TODO Terminar clase
+/// <summary>
+/// Esta clase controla el punto en donde
+/// los proyectiles aparecen, así como el 
+/// botón que los acciona.
+/// </summary>
 
 public class Accionador : NetworkBehaviour
 {
+    #region Variables
+
     [SerializeField] private float cadencia = 7f;
     [SerializeField] private int stockMax = 3;
     [SerializeField] private BaseAro prefabAro;
@@ -18,7 +24,11 @@ public class Accionador : NetworkBehaviour
     private float tiempoVolverDarAro;
     private float tiempoRecargaAro = 4f;
     private int stock;
-    
+
+    #endregion
+
+    #region Metodos Unity
+
     void OnEnable()
     {
         stock = stockMax;
@@ -44,24 +54,34 @@ public class Accionador : NetworkBehaviour
         {
             return;
         }
+
         tiempoVolverDisparar -= Time.deltaTime;
         tiempoVolverDarAro -= Time.deltaTime;
+
         if (PuedeDisparar())
         {
             CmdDisparo();
             stock--;
             tiempoVolverDisparar = cadencia;
         }
-        if(PuedeRegeneraAro())
+
+        if (PuedeRegeneraAro())
         {
             stock++;
             tiempoVolverDarAro = tiempoRecargaAro;
         }
 
         stockUI.text = "Rings: " + stock;
-        print(tiempoVolverDisparar);
     }
 
+    #endregion
+
+    #region Otros métodos
+
+    /// <summary>
+    /// Comprueba si el jugador puede disparar.
+    /// </summary>
+    /// <returns>Si puede disparar.</returns>
     bool PuedeDisparar()
     {
         return tiempoVolverDisparar <= 0 && 
@@ -69,12 +89,19 @@ public class Accionador : NetworkBehaviour
             Input.GetKeyDown(KeyCode.Space);
     }
 
+    /// <summary>
+    /// Controla si se puede regenerar un aro o no.
+    /// </summary>
+    /// <returns>Si puede generar un aro.</returns>
     bool PuedeRegeneraAro()
     {
         return tiempoVolverDarAro <= 0 &&
             stock < 3;
     }
 
+    /// <summary>
+    /// Dice al servidor del juego que dispare un aro.
+    /// </summary>
     [Command]
     void CmdDisparo()
     {
@@ -82,4 +109,7 @@ public class Accionador : NetworkBehaviour
         NetworkServer.Spawn(proyectil.gameObject);
         proyectil.Disparar();
     }
+
+    #endregion
+
 }

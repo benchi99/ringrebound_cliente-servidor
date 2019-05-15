@@ -6,11 +6,15 @@ using UnityEngine.EventSystems;
 
 public class ArrasrtarVentana : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
+    #region Variables
 
     private Vector2 offsetPuntero;
     private RectTransform rectTransformCanvas;
     private RectTransform rectTransformPanel;
 
+    #endregion
+
+    #region Métodos Unity
     void Awake()
     {
         Canvas canvas = GetComponentInParent<Canvas>();
@@ -20,7 +24,7 @@ public class ArrasrtarVentana : MonoBehaviour, IPointerDownHandler, IDragHandler
             rectTransformPanel = transform.parent as RectTransform;
         }
     }
-
+    
     public void OnDrag(PointerEventData eventData)
     {
         if (rectTransformPanel == null)
@@ -41,6 +45,17 @@ public class ArrasrtarVentana : MonoBehaviour, IPointerDownHandler, IDragHandler
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransformPanel, eventData.position, eventData.pressEventCamera, out offsetPuntero);
     }
 
+    #endregion
+
+    #region Otros métodos
+
+    /// <summary>
+    /// Esta función logra que la ventana se quede anclada al puntero
+    /// y a los bordes de la ventana, evitando que esta pueda quedarse
+    /// fuera del marco.
+    /// </summary>
+    /// <param name="eventData">El PointerEventData del OnDrag.</param>
+    /// <returns></returns>
     Vector2 AgarrarAVentana (PointerEventData eventData)
     {
         Vector2 posRaton = eventData.position;
@@ -54,4 +69,6 @@ public class ArrasrtarVentana : MonoBehaviour, IPointerDownHandler, IDragHandler
         return new Vector2(agarreX, agarreY);
 
     }
+
+    #endregion
 }

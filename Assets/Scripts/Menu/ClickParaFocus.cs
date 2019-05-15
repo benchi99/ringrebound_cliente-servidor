@@ -6,8 +6,14 @@ using UnityEngine.EventSystems;
 
 public class ClickParafocus : MonoBehaviour, IPointerDownHandler
 {
+    #region Variables
+
     private RectTransform panel;
-    
+
+    #endregion
+
+    #region Métodos Unity
+
     void Awake()
     {
         panel = GetComponent<RectTransform>();
@@ -17,5 +23,6 @@ public class ClickParafocus : MonoBehaviour, IPointerDownHandler
     {
         panel.SetAsLastSibling();
     }
-    
+
+    #endregion
 }

@@ -3,35 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-//TODO MODIFICAR CLASE IGUAL CAPTURA
-
+/// <summary>
+/// Esta clase es una clase base 
+/// de los aros. Esta deberá ser extendida
+/// a la hora de realizar modificaciones a
+/// los aros.
+/// </summary>
 public class BaseAro : NetworkBehaviour
 {
+    #region Variables
+
     [SerializeField] float velocidad;
     [SerializeField] int delayDisparo;
 
+    private float timerTag = 1f;
     private Rigidbody rb;
 
-    private void Awake()
+    #endregion
+
+    #region Metodos Unity
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    void Update()
     {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "levelBounds")
-        {
-            NetworkServer.Destroy(this.gameObject);
-        }
-        else if (other.gameObject.tag == "Ricochet")
-        {
-            rb.velocity += new Vector3(-rb.velocity.x, 0, -rb.velocity.z);
-        }
+        if (Time.time >= timerTag)
+            gameObject.tag = "Projectile";
     }
-    
+
+    #endregion
+
+    #region Otros métodos
+
+    /// <summary>
+    /// Añade velocidad del Rigidbody del aro.
+    /// </summary>
     public void Disparar()
     {
         rb.velocity = transform.forward * velocidad;
     }
-    
+
+    #endregion
+
 }
