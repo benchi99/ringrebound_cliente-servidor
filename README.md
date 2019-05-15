@@ -15,7 +15,7 @@ Si no se especifica ningún nombre y/o puerto, se utilizarán los siguientes val
 * **Nombre:** Ring Rebound Server
 * **Puerto:** 7777
 
-## Conectándose a una partida
+### Conectándose a una partida
 Para unirte a una partida, haces click en el botón de Jugar, y en la sección de "Conexión directa", tendrás que especificar la dirección IP y el puerto del servidor al que quieres conectarte. Cuando hagas click en "Conectar", si el servidor existe, ¡entrarás en la partida!
 
 ## ENGLISH
