@@ -230,7 +230,6 @@ public class Jugador : NetworkBehaviour
         }
 
         transform.position = puntoReaparicion;
-        print("Respawn!");
     }
     #endregion
 }

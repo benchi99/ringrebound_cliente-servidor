@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -12,9 +13,39 @@ public class CustomNetworkManager : NetworkManager
 {
     private string serverName;
 
+    void Start()
+    {
+        if (Application.isBatchMode)
+        {
+            Console.WriteLine("Starting server...");
+            Console.WriteLine("Please type a server name, or leave blank for default. (Default: Ring Rebound Server).");
+            string svName = Console.ReadLine();
+
+            Console.WriteLine("Please type server port, or leave blank for default. (Default: 7777).");
+            string port = Console.ReadLine();
+
+            if (svName != "")
+            {
+                serverName = svName;
+            }
+
+            if (port != "")
+            {
+                networkPort = int.Parse(port);
+            }
+
+            if (serverName == null || serverName == "")
+                serverName = "Ring Rebound Server";
+
+            base.StartServer();
+            Console.WriteLine("Partida " + serverName + " iniciada en el puerto " + networkPort + ".");
+        }   
+    }
+    
     /// <summary>
     /// Aloja una partida del juego.
     /// </summary>
+    /// 
     public void EmpezarHost()
     {
         if (serverName == null || serverName == "")

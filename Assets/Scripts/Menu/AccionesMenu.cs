@@ -154,12 +154,5 @@ public class AccionesMenu : MonoBehaviour
         fsms.value = (int)Screen.fullScreenMode;
     }
 
-    /*
-     *public void ChangeSensitivity(string sensibilidad)
-     *{
-     *    GlobalVars.sensibilidadRaton = float.Parse(sensibilidad);
-     *}
-     */
-
     #endregion
 }
