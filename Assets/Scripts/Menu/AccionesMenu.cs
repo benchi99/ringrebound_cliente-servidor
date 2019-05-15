@@ -13,6 +13,10 @@ public class AccionesMenu : MonoBehaviour
 
     [SerializeField] private Button playButton;
     [SerializeField] private Button disconnectButton;
+    [SerializeField] private Dropdown resolution;
+    [SerializeField] private Dropdown fsms;
+
+    private FullScreenMode isFullscreen = FullScreenMode.ExclusiveFullScreen;
 
     #endregion
 
@@ -21,6 +25,13 @@ public class AccionesMenu : MonoBehaviour
     void Awake()
     {
         disconnectButton.gameObject.SetActive(false);
+        RellenaDropdownResoluciones();
+        RellenarDropdownModosFullscreen();
+    }
+
+    void Start()
+    {
+        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenMode.ExclusiveFullScreen, 60);
     }
 
     void OnEnable()
@@ -93,6 +104,54 @@ public class AccionesMenu : MonoBehaviour
             disconnectButton.gameObject.SetActive(true);
             GlobalVars.IsInPauseMenu = false;
         }
+    }
+
+    /// <summary>
+    /// Función que cambia las opciones de la ventana de juego.
+    /// </summary>
+    public void VideoSettingsChange()
+    {
+        Resolution desiredResolution = Screen.resolutions[resolution.value];
+        
+        Screen.SetResolution(desiredResolution.width, desiredResolution.height, (FullScreenMode)fsms.value, 60);
+    }
+
+    /// <summary>
+    /// Función que rellena un dropdown con las resoluciones disponibles.
+    /// </summary>
+    void RellenaDropdownResoluciones()
+    {
+        List<string> resolutions = new List<string>();
+        List<Resolution> rs = new List<Resolution>(Screen.resolutions); 
+
+        foreach (Resolution res in Screen.resolutions)
+        {
+            if (!resolutions.Contains(res.ToString().Substring(0, res.ToString().IndexOf('@') - 1)))
+            {
+                resolutions.Add(res.ToString().Substring(0, res.ToString().IndexOf('@') - 1));
+            }
+        }
+
+        resolution.ClearOptions();
+        resolution.AddOptions(resolutions);
+        resolution.value = rs.IndexOf(Screen.currentResolution);
+        
+    }
+
+    /// <summary>
+    /// Función que rellena un dropdown con las opciones de pantalla completa disponibles.
+    /// </summary>
+    void RellenarDropdownModosFullscreen()
+    {
+        List<string> fullscreenmodes = new List<string>();
+        foreach (FullScreenMode fsm in GlobalVars.fullScreenModes)
+        {
+            fullscreenmodes.Add(fsm.ToString());
+        }
+
+        fsms.ClearOptions();
+        fsms.AddOptions(fullscreenmodes);
+        fsms.value = (int)Screen.fullScreenMode;
     }
 
     #endregion

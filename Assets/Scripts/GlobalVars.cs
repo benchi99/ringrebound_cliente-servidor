@@ -15,5 +15,14 @@ namespace Assets.Scripts
     {
         //Controla si el jugador ha activado el menú de pausa.
         public static bool IsInPauseMenu = false;
+
+        public static readonly FullScreenMode[] fullScreenModes = {
+            FullScreenMode.ExclusiveFullScreen,
+            FullScreenMode.FullScreenWindow,
+            FullScreenMode.MaximizedWindow,
+            FullScreenMode.Windowed
+        };
+
+        public static float sensibilidadRaton = 150;
     }
 }
