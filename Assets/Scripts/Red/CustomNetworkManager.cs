@@ -84,7 +84,10 @@ public class CustomNetworkManager : NetworkManager
     public void DesconectarDePartida()
     {
         if (NetworkServer.connections.Count > 0)
+        {
+            StartCoroutine(TerminatePresence());
             base.StopHost();
+        }
         else
             base.StopClient();
     }
@@ -123,7 +126,8 @@ public class CustomNetworkManager : NetworkManager
         Console.WriteLine("Please type server port, or leave blank for default. (Default: 7777).");
         string port = Console.ReadLine();
 
-        Console.WriteLine("Do you want the server to be available to the public? This requires the previously specified port to be forwarded in your router. (Yes/No)");
+        Console.WriteLine("Do you want the server to be available to the public? This requires the previously specified port to be forwarded in your router. (Default: No)");
+        Console.WriteLine("(Yes/No)");
         string avpublic = Console.ReadLine();
 
         if (svName != "")
@@ -161,7 +165,7 @@ public class CustomNetworkManager : NetworkManager
         UnityWebRequest http = UnityWebRequest.Post(GlobalVars.BASE_WEBURL, form);
         // Se realiza la petición HTTP.
         yield return http.SendWebRequest();
-        
+
         if (http.isNetworkError || http.isHttpError)
         {
             // Si hay error, se imprime el código de error, así como la respuesta.
@@ -173,13 +177,41 @@ public class CustomNetworkManager : NetworkManager
             // Obtenemos la respuesta, y guardamos el ID de servidor que se nos ha asignado.
             string response = http.downloadHandler.text;
             print(response);
-            string id = response.Substring(response.LastIndexOf(':'), response.IndexOf('}'));
+            print(response.Length);
+            print(response.LastIndexOf(':'));
+            print(response.IndexOf('}'));
+            print(response[response.LastIndexOf(':')]);
+            print(response[response.IndexOf('}')]);
+
+            string id = response.Substring(response.LastIndexOf(':') + 1).Replace('}', ' ').Trim();
+            print(id);
             GlobalVars.serverId = int.Parse(id);
+            if (Application.isBatchMode)
+                Console.WriteLine("ServerID " + GlobalVars.serverId +" is now available to the public!");
         }
     }
 
     IEnumerator TerminatePresence()
     {
-        yield return null;
+        // Se construye una petición HTTP DELETE con el ID del Servidor que hemos obtenido.
+        UnityWebRequest del = UnityWebRequest.Delete(GlobalVars.BASE_WEBURL + GlobalVars.serverId);
+        // Realizamos la petición.
+        yield return del.SendWebRequest();
+
+        // Si hay errores, se imprimen.
+        if (del.isHttpError || del.isNetworkError)
+        {
+            Debug.LogError(del.error);
+            Debug.LogError(del.downloadHandler.text);
+        }
+        // Si no, se imprime el código de resultado.
+        else
+        {
+            print(del.responseCode);
+            if (Application.isBatchMode)
+                Console.WriteLine("ServerID " + GlobalVars.serverId + " is no longer available to the public!");
+            GlobalVars.serverId = 0;
+        }
+
     }
 }

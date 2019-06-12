@@ -45,6 +45,13 @@ public class ServerBrowser : MonoBehaviour
 
     void FillServerList(string text)
     {
+        ServerButton[] oldServerButtons = ListContents.gameObject.GetComponents<ServerButton>();
+
+        foreach (ServerButton old in oldServerButtons)
+        {
+            Destroy(old.gameObject);
+        }
+
         List<Servidor> servidores = ServerJsonParser.Parse(text);
 
         foreach (Servidor servidor in servidores)
@@ -55,7 +62,5 @@ public class ServerBrowser : MonoBehaviour
             ServerButton svbt = btn.GetComponent<ServerButton>();
             svbt.SetInfo(servidor);
         }
-        
-        
     }
 }
