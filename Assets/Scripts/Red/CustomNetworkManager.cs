@@ -101,4 +101,11 @@ public class CustomNetworkManager : NetworkManager
         else
             base.StopClient();
     }
+
+    public void ConectarseA(string ip, int puerto)
+    {
+        networkAddress = ip;
+        networkPort = puerto;
+        base.StartClient();
+    }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2086466371031247079}
   - component: {fileID: 8202074838882392881}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PlayerMax
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Number of players: 000'
+  m_Text: 'Max Players: 000'
 --- !u!1 &9116239866865262606
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 9116239866951010823}
   - component: {fileID: 9116239866951010816}
   - component: {fileID: 9116239866951010817}
+  - component: {fileID: 9086424296917850458}
   m_Layer: 5
   m_Name: ServerButtonPrefab
   m_TagString: Untagged
@@ -277,3 +278,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &9086424296917850458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9116239866951010819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14628d9b75ad892439349cb661158c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 9116239866951010817}
+  servernametext: {fileID: 9116239866865262604}
+  servermaxnumplayers: {fileID: 8202074838882392881}
