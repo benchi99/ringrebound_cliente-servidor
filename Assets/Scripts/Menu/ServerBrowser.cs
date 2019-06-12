@@ -45,19 +45,13 @@ public class ServerBrowser : MonoBehaviour
 
     void FillServerList(string text)
     {
-        string properjson = "{\"listaServidores\": " + text + " }";
-        
-        print(properjson);
-
-        print(text.Substring(1, text.Length - 2));
-
         List<Servidor> servidores = ServerJsonParser.Parse(text);
 
         foreach (Servidor servidor in servidores)
         {
             print(servidor.name);
             var btn = Instantiate(ButtonPrefab);
-            btn.gameObject.transform.parent = ListContents.gameObject.transform;
+            btn.gameObject.transform.SetParent(ListContents.gameObject.transform);
             ServerButton svbt = btn.GetComponent<ServerButton>();
             svbt.SetInfo(servidor);
         }
