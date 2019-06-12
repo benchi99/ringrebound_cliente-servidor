@@ -6,10 +6,17 @@ using System.Runtime.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using Assets.Scripts.Utils;
 
 public class ServerBrowser : MonoBehaviour
 {
+
+    [SerializeField]
+    GameObject ButtonPrefab;
+
+    [SerializeField]
+    Image ListContents;
 
     public void RetrieveServers()
     {
@@ -49,6 +56,10 @@ public class ServerBrowser : MonoBehaviour
         foreach (Servidor servidor in servidores)
         {
             print(servidor.name);
+            var btn = Instantiate(ButtonPrefab);
+            btn.gameObject.transform.parent = ListContents.gameObject.transform;
+            ServerButton svbt = btn.GetComponent<ServerButton>();
+            svbt.SetInfo(servidor);
         }
         
         

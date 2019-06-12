@@ -18,9 +18,6 @@ public class ServerButton : MonoBehaviour
 
     void Start()
     {
-        servernametext.text = "Retrieveing information...";
-        servermaxnumplayers.text = "Max Players: 0";
-
         btn.onClick.AddListener(Conectar);
     }
 
