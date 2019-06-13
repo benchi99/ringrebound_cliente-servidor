@@ -45,18 +45,15 @@ public class ServerBrowser : MonoBehaviour
 
     void FillServerList(string text)
     {
-        ServerButton[] oldServerButtons = ListContents.gameObject.GetComponents<ServerButton>();
-
-        foreach (ServerButton old in oldServerButtons)
+        foreach (Transform child in ListContents.gameObject.transform)
         {
-            Destroy(old.gameObject);
+            Destroy(child.gameObject);
         }
 
         List<Servidor> servidores = ServerJsonParser.Parse(text);
 
         foreach (Servidor servidor in servidores)
         {
-            print(servidor.name);
             var btn = Instantiate(ButtonPrefab);
             btn.gameObject.transform.SetParent(ListContents.gameObject.transform);
             ServerButton svbt = btn.GetComponent<ServerButton>();

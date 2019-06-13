@@ -14,10 +14,4 @@ namespace Assets.Scripts.Modelos
         public string ip_address { get; set; }
         public int port { get; set; }
     }
-
-    [Serializable]
-    public class Servidores
-    {
-        public List<Servidor> listaServidores { get; set; }
-    }
 }
