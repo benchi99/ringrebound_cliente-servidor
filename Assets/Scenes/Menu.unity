@@ -379,7 +379,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Crear partida
+  m_Text: Create match
 --- !u!222 &97861374
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -998,7 +998,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Conexi\xF3n directa"
+  m_Text: Direct Connect
 --- !u!222 &284623509
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1785,9 +1785,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Opciones
-
-'
+  m_Text: Options
 --- !u!222 &489980878
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2390,7 +2388,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Direcci\xF3n IP"
+  m_Text: IP Address
 --- !u!222 &593229754
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2469,7 +2467,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Abrir servidor
+  m_Text: Start Server
 --- !u!222 &607906556
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2832,7 +2830,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nombre
+  m_Text: Name
 --- !u!222 &676332783
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3974,7 +3972,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Puerto
+  m_Text: Port
 --- !u!222 &920953000
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4571,7 +4569,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Desconectar
+  m_Text: Disconnect
 --- !u!222 &1086141565
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5625,7 +5623,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Puerto
+  m_Text: Port
 --- !u!222 &1394654561
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6596,7 +6594,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: JUGAR
+  m_Text: PLAY
 --- !u!222 &1654423217
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7918,7 +7916,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Conectar
+  m_Text: Connect
 --- !u!222 &1910432721
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8769,9 +8767,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Salir
-
-'
+  m_Text: Exit
 --- !u!222 &2081473252
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8979,7 +8975,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Jugar
+  m_Text: 'Play
 
 '
 --- !u!222 &2119723610

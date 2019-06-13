@@ -71,7 +71,7 @@ public class Accionador : NetworkBehaviour
             tiempoVolverDarAro = tiempoRecargaAro;
         }
 
-        stockUI.text = "Rings: " + stock;
+        stockUI.text = "RINGS: " + stock;
     }
 
     #endregion
