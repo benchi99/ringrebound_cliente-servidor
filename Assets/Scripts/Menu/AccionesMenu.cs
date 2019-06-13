@@ -111,9 +111,12 @@ public class AccionesMenu : MonoBehaviour
     /// </summary>
     public void VideoSettingsChange()
     {
-        Resolution desiredResolution = Screen.resolutions[resolution.value];
-        
-        Screen.SetResolution(desiredResolution.width, desiredResolution.height, (FullScreenMode)fsms.value, 60);
+        string desiredResolution = resolution.captionText.text;
+
+        int width = int.Parse(desiredResolution.Substring(0, desiredResolution.IndexOf('x') - 1));
+        int height = int.Parse(desiredResolution.Substring(desiredResolution.IndexOf('x') + 2));
+
+        Screen.SetResolution(width, height, (FullScreenMode)fsms.value, 60);
     }
 
     /// <summary>

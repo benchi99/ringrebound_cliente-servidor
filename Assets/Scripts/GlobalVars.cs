@@ -24,5 +24,11 @@ namespace Assets.Scripts
         };
 
         public static float sensibilidadRaton = 150;
+
+        public static readonly string BASE_WEBURL = "http://damnation.ddns.net:8000/ringrebound/api/gameservers/";
+
+        public static readonly string LOCAL_WEBURL = "http://localhost:8000/ringrebound/api/gameservers/";
+
+        public static int serverId = 0;
     }
 }
