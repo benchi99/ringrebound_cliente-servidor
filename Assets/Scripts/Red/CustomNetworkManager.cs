@@ -85,7 +85,10 @@ public class CustomNetworkManager : NetworkManager
     {
         if (NetworkServer.connections.Count > 0)
         {
-            StartCoroutine(TerminatePresence());
+            if (GlobalVars.serverId != 0)
+            {
+                StartCoroutine(TerminatePresence());
+            }
             base.StopHost();
         }
         else
